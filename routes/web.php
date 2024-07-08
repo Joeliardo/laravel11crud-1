@@ -7,5 +7,4 @@ Route::get('/', function () {
 });
 
 Route::resource('admin/user', \App\Http\Controllers\UserController::class);
-Route::resource('admin/pemeriksaan', \App\Http\Controllers\PemeriksaanController::class);
-Route::get('admin/pemeriksaan/download/{file}', [\App\Http\Controllers\PemeriksaanController::class, 'download'])->name('admin.file.download');
+
