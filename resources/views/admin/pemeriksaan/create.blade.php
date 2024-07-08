@@ -8,16 +8,16 @@
             <div class="card border-0 shadow rounded">
             @include('partial.dangeralert')
                 <div class="card-body">
-                    <form action="{{ route('pemeriksaan.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <!-- token form -->
                         @csrf
                         <div class="mb-3">
                             <label for="pasien">Pasien</label>
                             <select id="pasien" name="pasien" class="form-control @error('pasien') is-invalid @enderror" required>
                                 <option value="" selected>- Pilih -</option>
-                                @foreach($datapasien as $dd)
-                                <option value="{{ $dd->id }}" {{ old('pasien')==$dd->id ? 'selected':''  }}>{{ $dd->nama}}</option>
-                                @endforeach
+                                
+                                <option value="" {{ old('pasien')=='' ? 'selected':''  }}></option>
+                                
                             </select>
 
                             <!-- error message untuk pasien -->
@@ -33,9 +33,9 @@
                             <label for="pasien">Dokter</label>
                             <select id="pasien" name="dokter" class="form-control @error('pasien') is-invalid @enderror" required>
                                 <option value="" selected>- Pilih -</option>
-                                @foreach($datadokter as $dd)
-                                <option value="{{ $dd->id }}" {{ old('pasien')==$dd->id ? 'selected':''  }}>{{ $dd->nama." - ".$dd->spesialisasi}}</option>
-                                @endforeach
+                                
+                                <option value="" {{ old('pasien')=='' ? 'selected':''  }}></option>
+                                
                             </select>
                         
 
@@ -86,7 +86,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-md btn-primary">Save</button>
-                        <a href="{{ route('pemeriksaan.index') }}" class="btn btn-md btn-secondary">back</a>
+                        <a href="" class="btn btn-md btn-secondary">back</a>
 
                     </form>
                 </div>
