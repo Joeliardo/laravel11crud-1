@@ -10,7 +10,7 @@
           <a class="nav-link active" aria-current="page" href="{{ route('user.index') }}">Kelola Pengguna</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('pemeriksaan.index') }}">Pemeriksaan</a>
+          <a class="nav-link active" aria-current="page" href="">Pemeriksaan</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
