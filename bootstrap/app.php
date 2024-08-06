@@ -12,6 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+        $middleware->alias([
+            'cekumur' => \App\Http\Middleware\CheckAge::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

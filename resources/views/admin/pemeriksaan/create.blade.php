@@ -8,15 +8,16 @@
             <div class="card border-0 shadow rounded">
             @include('partial.dangeralert')
                 <div class="card-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('pemeriksaan.store')}}" method="POST" enctype="multipart/form-data">
                         <!-- token form -->
                         @csrf
                         <div class="mb-3">
                             <label for="pasien">Pasien</label>
                             <select id="pasien" name="pasien" class="form-control @error('pasien') is-invalid @enderror" required>
                                 <option value="" selected>- Pilih -</option>
-                                
-                                <option value="" {{ old('pasien')=='' ? 'selected':''  }}></option>
+                                @foreach ($dataPasien as $ps)
+                                <option value="{{$ps->id}}" {{ old('pasien')==$ps->id ? 'selected':''  }}>{{$ps->nama}}</option>
+                                @endforeach
                                 
                             </select>
 
@@ -31,10 +32,11 @@
                         <div class="mb-3">
                             <label for="email">Dokter</label>
                             <label for="pasien">Dokter</label>
-                            <select id="pasien" name="dokter" class="form-control @error('pasien') is-invalid @enderror" required>
+                            <select id="dokter" name="dokter" class="form-control @error('dokter') is-invalid @enderror" required>
                                 <option value="" selected>- Pilih -</option>
-                                
-                                <option value="" {{ old('pasien')=='' ? 'selected':''  }}></option>
+                                @foreach ($dataDokter as $dk)
+                                <option value="{{$dk->id}}" {{ old('dokter')==$dk->id ? 'selected':''  }}>{{$dk->nama}}</option>
+                                @endforeach
                                 
                             </select>
                         

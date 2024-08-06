@@ -9,7 +9,7 @@
             @include('partial.dangeralert')
             
                 <div class="card-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('pemeriksaan.update', $pemeriksaan)}}" method="POST" enctype="multipart/form-data">
                         <!-- token form -->
                         @csrf
                         @method('PUT')
@@ -18,8 +18,10 @@
                             <input type="hidden" name="no_transaksi_pemeriksaan" value="">
                             <select id="pasien" name="pasien" class="form-control @error('pasien') is-invalid @enderror" required>
                                 <option value="" selected>- Pilih -</option>
-                                
-                                <option value="" {{ old('pasien') == '' ? 'selected':''  }}></option>
+                                @foreach ($dataPasien as $dp)
+                                <option value="{{$dp->id}}" {{ old('pasien')?? $pemeriksaan->idPasien == $dp->id ? 'selected':''  }}>{{$dp->nama}}</option>
+                                    
+                                @endforeach
                                 
                             </select>
 
@@ -36,8 +38,10 @@
                             <label for="pasien">Dokter</label>
                             <select id="pasien" name="dokter" class="form-control @error('pasien') is-invalid @enderror" required>
                                 <option value="" selected>- Pilih -</option>
-                                
-                                <option value="" {{ old('pasien') =='' ? 'selected':''  }}></option>
+                                @foreach ($dataDokter as $dd)
+                                <option value="{{$dd->id}}" {{ old('dokter')?? $pemeriksaan->idDokter ==$dd->id ? 'selected':''  }}>{{$dd->nama}}</option>
+                                    
+                                @endforeach
                                 
                             </select>
                         
@@ -51,9 +55,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password">Tanggal Periksa</label>
+                            <label for="tanggalPeriksa">Tanggal Periksa</label>
                             <input type="date" class="form-control @error('tanggalPeriksa') is-invalid @enderror"
-                                   name="tanggalPeriksa" value="{{ old('tanggalPeriksa') }}" required>
+                                   name="tanggalPeriksa" value="{{ old('tanggalPeriksa', $pemeriksaan->tanggalPeriksa) }}" required>
 
                             <!-- error message untuk tanggal -->
                             @error('tanggalPeriksa')
@@ -64,8 +68,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password">Keluhan</label>
-                            <textarea name="keluhan" id="keluhan" class="form-control @error('keluhan') is-invalid @enderror" required>{{ old('keluhan') }}</textarea>
+                            <label for="keluhan">Keluhan</label>
+                            <textarea name="keluhan" id="keluhan" class="form-control @error('keluhan') is-invalid @enderror" required>{{ old('keluhan', $pemeriksaan->keluhan) }}</textarea>
 
                             <!-- error message untuk keluhan -->
                             @error('keluhan')
